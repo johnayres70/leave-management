@@ -13,6 +13,7 @@ namespace leave_management.Contracts
 
         T FindById(int Id);  // Find a particular recort of any type
 
+        bool isExists(int id);
         bool Create(T Entity);  // Create a record of any type
         bool Update(T Entity);  // Update a record of any type
         bool Delete(T Entity);  // Delete a record of any type

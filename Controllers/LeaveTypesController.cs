@@ -6,11 +6,14 @@ using AutoMapper;
 using leave_management.Data;
 using leave_management.Models;
 using leave_management.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace leave_management.Controllers
 {
+    // jpa added entire controll level admin only authorisation
+    [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
 
@@ -25,6 +28,8 @@ namespace leave_management.Controllers
             _mapper = mapper;
         }
 
+
+      
         // GET: LeaveTypes
         public ActionResult Index()
         {

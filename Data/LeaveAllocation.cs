@@ -25,5 +25,10 @@ namespace leave_management.Data
 
         public int LeaveTypeId{ get; set; }
 
+        // jpa added  stores the current year ie 2020
+        public int Period { get; set; } 
+
+
+
     }
 }

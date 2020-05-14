@@ -12,10 +12,11 @@ namespace leave_management.Models
 
         public int Id { get; set; }
 
-        [Required]
         public int NumberOfDays { get; set; }
 
         public DateTime DateCreated { get; set; }
+
+        public int Period { get; set; }
 
         public EmployeeVM Employee { get; set; }
 
@@ -25,9 +26,35 @@ namespace leave_management.Models
 
         public int LeaveTypeId { get; set; }
 
-        // To accomodate Dropdowns
+        // jpa no longer needed
+        //// To accomodate Dropdowns
+        //public IEnumerable<SelectListItem> Employees { get; set; }
+        //public IEnumerable<SelectListItem> LeaveTypes { get; set; }
+    }
 
-        public IEnumerable<SelectListItem> Employees { get; set; }
-        public IEnumerable<SelectListItem> LeaveTypes { get; set; }
+    public class CreateLeaveAllocationVM
+    {
+        public int NumberUpdated { get; set; }
+        public List<LeaveTypeVM> LeaveTypes { get; set; }
+    }
+
+    public class ViewAllocationsVM
+    {
+        public EmployeeVM Employee { get; set; }
+        public string EmployeeId { get; set; }
+        public List<LeaveAllocationVM> LeaveAllocations { get; set; }
+    }
+
+    public class EditLeaveAllocationVM
+    {
+        public int Id { get; set; }
+
+        public EmployeeVM Employee { get; set; }
+        public string EmployeeId { get; set; }
+        [Display(Name = "Number Of Days")]
+        [Range(1, 50, ErrorMessage = "Enter Valid Number")]
+        public int NumberOfDays { get; set; }
+        public LeaveTypeVM LeaveType { get; set; }
+
     }
 }

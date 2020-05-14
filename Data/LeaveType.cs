@@ -12,6 +12,7 @@ namespace leave_management.Data
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public int DefaultDays{ get; set; }  // jpa added
         public DateTime DateCreated { get; set; }
 
     }

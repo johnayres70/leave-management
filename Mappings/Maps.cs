@@ -17,6 +17,8 @@ namespace leave_management.Mappings
             CreateMap<LeaveHistory, LeaveHistoryVM>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationVM>().ReverseMap();
             CreateMap<Employee, EmployeeVM>().ReverseMap();
+            // jpa added
+            CreateMap<LeaveAllocation, EditLeaveAllocationVM>().ReverseMap();
         }
 
     }

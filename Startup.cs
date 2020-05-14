@@ -44,9 +44,12 @@ namespace leave_management
             services.AddAutoMapper(typeof(Maps));
 
             // jpa disable confirm email address in User Identity
-            //   services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            //   services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
             // jpa added Identity Role
-            services.AddDefaultIdentity<IdentityUser>()
+            // jpa change to Emplyee or you get InvalidOperationException: Unable to resolve service for type 'Microsoft.AspNetCore.Identity.UserManager`1[leave_management.Data.Employee]' while attempting to activate 'leave_management.Controllers
+            // .. error
+            // services.AddDefaultIdentity<Employee>()
+           services.AddDefaultIdentity<Employee>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -55,11 +58,13 @@ namespace leave_management
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        // jpa added new parameters UserManager<IdentityUser> userManager,  RoleManager<IdentityRole> roleManager
+        // jpa added new parameters UserManager<Employee> userManager,  RoleManager<IdentityRole> roleManager
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager,
+            // jpa     avoide  above invalid operation error
+           //  UserManager<Employee> userManager,
+            UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager
             )
         {
@@ -83,6 +88,7 @@ namespace leave_management
             app.UseAuthorization();
 
             // jpa added for default admin role
+           // SeedData.Seed(userManager, roleManager);
             SeedData.Seed(userManager, roleManager);
 
             app.UseEndpoints(endpoints =>

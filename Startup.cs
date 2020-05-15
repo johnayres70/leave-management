@@ -38,7 +38,7 @@ namespace leave_management
             // jpa added next 3 references for repository and contracts file
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
-            services.AddScoped<ILeaveHistoryRepository, LeaveHistoryRepository>();
+            services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 
             // jpa added automapper reference to middleware
             services.AddAutoMapper(typeof(Maps));
